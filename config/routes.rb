@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   scope path_names: { new: "novo", edit: "editar" } do
     resources :posts, path: 'noticias'
     resources :banners
+    resources :pages, path: 'paginas'
   end
 
   root 'posts#index'

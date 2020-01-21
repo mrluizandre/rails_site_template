@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @page.name %>
+</p>
+
+<p>
+  <strong>Picture:</strong>
+  <%= image_tag @page.picture_url, height: 150 if @page.picture.present? %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= sanitize @page.body %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @page.slug %>
+</p>
+
+<%= link_to 'Edit', edit_page_path(@page) %> |
+<%= link_to 'Back', pages_path %>
