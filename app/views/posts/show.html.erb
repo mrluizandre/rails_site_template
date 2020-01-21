@@ -7,12 +7,12 @@
 
 <p>
   <strong>Picture:</strong>
-  <%= @post.picture %>
+  <%= image_tag @post.picture_url, height: 150 if @post.picture.present? %>
 </p>
 
 <p>
   <strong>Body:</strong>
-  <%= @post.body %>
+  <%= sanitize @post.body %>
 </p>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
