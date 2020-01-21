@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @banner.name %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @banner.location %>
+</p>
+
+<p>
+  <strong>Picture:</strong>
+  <%= image_tag @banner.picture_url, height: 150 if @banner.picture.present? %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @banner.link %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @banner.description %>
+</p>
+
+<%= link_to 'Edit', edit_banner_path(@banner) %> |
+<%= link_to 'Back', banners_path %>

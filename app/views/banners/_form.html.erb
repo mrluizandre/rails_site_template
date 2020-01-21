@@ -1,0 +1,17 @@
+
+<%= simple_form_for(@banner) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :location, collection: Banner.locations.keys.map{|lo| [lo.titleize,lo]} %>
+    <%= f.input :picture %>
+    <%= f.input :link %>
+    <%= f.input :description %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
