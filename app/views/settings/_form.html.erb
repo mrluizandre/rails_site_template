@@ -1,0 +1,23 @@
+
+<%= simple_form_for(@setting) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <% if @setting.persisted? %>
+      <strong><%= @setting.name %></strong>
+      <p>
+        <em><%= @setting.description %></em>
+      </p>
+    <% else %>
+      <%= f.input :name %>
+      <%= f.input :description %>
+      <%= f.input :key %>
+    <% end %>
+    <%= f.input :value %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
