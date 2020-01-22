@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @gallery.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @gallery.description %>
+</p>
+
+<h2>Items</h2>
+
+<% @gallery.gallery_pictures.each do |gp| %>
+  <div>
+    <strong><%= gp.name %></strong>
+    <p><%= gp.description %></p>
+    <%= image_tag gp.picture_url, height: 150 if gp.picture.present? %>
+  </div>
+<% end %>
+
+<%= simple_form_for(@gallery.gallery_pictures.build) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :picture %>
+    <%= f.association :gallery, as: :hidden %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
+
+<%= link_to 'Edit', edit_gallery_path(@gallery) %> |
+<%= link_to 'Back', galleries_path %>

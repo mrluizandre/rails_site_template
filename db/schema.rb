@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_21_144422) do
+ActiveRecord::Schema.define(version: 2020_01_22_124346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,23 @@ ActiveRecord::Schema.define(version: 2020_01_21_144422) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "galleries", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "gallery_pictures", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "picture"
+    t.bigint "gallery_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gallery_id"], name: "index_gallery_pictures_on_gallery_id"
+  end
+
   create_table "pages", force: :cascade do |t|
     t.string "name"
     t.string "picture"
@@ -68,4 +85,5 @@ ActiveRecord::Schema.define(version: 2020_01_21_144422) do
     t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
+  add_foreign_key "gallery_pictures", "galleries"
 end
